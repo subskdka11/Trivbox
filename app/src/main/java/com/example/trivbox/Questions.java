@@ -1,9 +1,9 @@
 package com.example.trivbox;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -21,6 +21,7 @@ public class Questions extends AppCompatActivity {
     private Result currentResult;
     int questionNo;
     List<Result> apiResponse;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class Questions extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
 
         getAllId();
+
+        handler = new Handler();
 
         Intent i = getIntent();
         apiResponse = (List<Result>) i.getExtras().getSerializable("name_this");
@@ -45,41 +48,30 @@ public class Questions extends AppCompatActivity {
 
     private View.OnClickListener checkAnswer = new View.OnClickListener() {
         public void onClick(View v) {
-            String clickedOption = (String) ((Button) v).getText();
+            Button clickedButton = ((Button) v);
+            String clickedOption = (String) clickedButton.getText();
             if (clickedOption.equals(currentResult.getCorrectAnswer())) {
+                ((Button) v).setBackgroundColor(Color.parseColor("#00FF00"));
                 Toast.makeText(Questions.this, "Correct Answer", Toast.LENGTH_SHORT).show();
             }else{
+                ((Button) v).setBackgroundColor(Color.parseColor("#FF0000"));
                 Toast.makeText(Questions.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
             }
-            runThread();
+
             questionNo = questionNo + 1;
             if (questionNo <= 10) {
                 currentResult = apiResponse.get(questionNo - 1);
-                setData();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setData();
+                    }
+                }, 2000);
             }else{
                 startActivity(new Intent(Questions.this, ClassicOptions.class));
             }
         }
     };
-
-    private void runThread() {
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-        });
-    }
 
     private void getAllId(){
         questionNoText = findViewById(R.id.question_no);
@@ -91,6 +83,10 @@ public class Questions extends AppCompatActivity {
     }
 
     public void setData() {
+        option1.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        option2.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        option3.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        option4.setBackgroundColor(Color.parseColor("#FFFFFF"));
         String question = currentResult.getQuestion();
         String correctAnswer = currentResult.getCorrectAnswer();
         List<String> wrongAnswer = currentResult.getIncorrectAnswers();
