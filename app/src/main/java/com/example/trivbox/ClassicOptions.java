@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,6 @@ public class ClassicOptions extends AppCompatActivity {
     }
 
     public void start_game(View view) {
-
         String selectedCategory = catSpinner.getSelectedItem().toString();
         String selectedDifficulty = diffSpinner.getSelectedItem().toString();
         checkSelected = (TextView) findViewById(R.id.check_selected);
@@ -87,8 +87,7 @@ public class ClassicOptions extends AppCompatActivity {
     public void changeActivity(RequestAPIModelClass apiResponse){
         List<Result> res = apiResponse.getResults();
         Intent intent = new Intent(ClassicOptions.this, Questions.class);
-//        intent.putExtra("sendthis", apiResponse.getResponseCode().toString());
-        intent.putExtra("name_this", res.get(0));
+        intent.putExtra("name_this", (Serializable) res);
         startActivity(intent);
     }
 }
