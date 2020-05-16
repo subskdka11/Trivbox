@@ -34,8 +34,8 @@ public class ClassicOptions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classic_options);
 
-        String[] categories = { "Art", "Games", "Songs", "Movies" };
-        String[] difficulties = { "Easy", "Normal", "Hard" };
+        String[] categories = { "All", "31", "15", "28" };
+        String[] difficulties = { "All", "easy", "medium", "hard" };
 
         catSpinner = (Spinner) findViewById(R.id.cat_spinner);
         diffSpinner = (Spinner) findViewById(R.id.diff_spinner);
@@ -54,18 +54,29 @@ public class ClassicOptions extends AppCompatActivity {
         String selectedCategory = catSpinner.getSelectedItem().toString();
         String selectedDifficulty = diffSpinner.getSelectedItem().toString();
         checkSelected = (TextView) findViewById(R.id.check_selected);
-
-        getAPIData();
+        Toast.makeText(ClassicOptions.this, selectedCategory+selectedDifficulty, Toast.LENGTH_SHORT).show();
+        getAPIData(selectedCategory, selectedDifficulty);
     }
 
-    private void getAPIData() {
+    private void getAPIData(String selectedCategory, String selectedDifficulty) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://opentdb.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        Call<RequestAPIModelClass> mycall = requestInterface.getQuestionJson();
+        Call<RequestAPIModelClass> mycall;
+        if (selectedCategory.equals("All")) {
+            if (selectedDifficulty.equals("All")) {
+                mycall = requestInterface.getQuestionJson();
+            } else {
+                mycall = requestInterface.getQuestionJsonWithDifficulty(selectedDifficulty);
+            }
+        } else if (selectedDifficulty.equals("All")){
+            mycall = requestInterface.getQuestionJsonWithCategory(selectedCategory);
+        } else{
+            mycall = requestInterface.getQuestionJsonWithCategoryAndDifficulty(selectedCategory, selectedDifficulty);
+        }
 
         mycall.enqueue(new Callback<RequestAPIModelClass>() {
             @Override

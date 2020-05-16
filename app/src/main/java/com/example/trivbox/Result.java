@@ -1,5 +1,7 @@
 package com.example.trivbox;
 
+import android.text.Html;
+
 import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -51,7 +53,7 @@ public class Result implements Serializable {
     }
 
     public String getQuestion() {
-        return question;
+        return Html.fromHtml(question).toString();
     }
 
     public void setQuestion(String question) {
@@ -59,7 +61,7 @@ public class Result implements Serializable {
     }
 
     public String getCorrectAnswer() {
-        return correctAnswer;
+        return Html.fromHtml(correctAnswer).toString();
     }
 
     public void setCorrectAnswer(String correctAnswer) {

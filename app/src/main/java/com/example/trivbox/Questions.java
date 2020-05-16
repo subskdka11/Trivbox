@@ -22,6 +22,7 @@ public class Questions extends AppCompatActivity {
     int questionNo;
     List<Result> apiResponse;
     Handler handler;
+    int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class Questions extends AppCompatActivity {
         Intent i = getIntent();
         apiResponse = (List<Result>) i.getExtras().getSerializable("name_this");
         questionNo = 1;
+        score = 0;
         currentResult = apiResponse.get(questionNo-1);
 
         setData();
@@ -51,6 +53,13 @@ public class Questions extends AppCompatActivity {
             Button clickedButton = ((Button) v);
             String clickedOption = (String) clickedButton.getText();
             if (clickedOption.equals(currentResult.getCorrectAnswer())) {
+                if (currentResult.getDifficulty().equals("easy")){
+                    score += 10;
+                } else if (currentResult.getDifficulty().equals("medium")){
+                    score += 30;
+                } else if (currentResult.getDifficulty().equals("hard")){
+                    score += 60;
+                }
                 ((Button) v).setBackgroundColor(Color.parseColor("#00FF00"));
                 Toast.makeText(Questions.this, "Correct Answer", Toast.LENGTH_SHORT).show();
             }else{
@@ -68,7 +77,9 @@ public class Questions extends AppCompatActivity {
                     }
                 }, 2000);
             }else{
-                startActivity(new Intent(Questions.this, ClassicOptions.class));
+                Intent intent = new Intent(Questions.this, ShowScore.class);
+                intent.putExtra("score", score);
+                startActivity(intent);
             }
         }
     };
