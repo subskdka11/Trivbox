@@ -2,38 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ClassicOptions"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:padding="16dp" >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TrivBox"
+        android:text="Pick Category"
         android:textAlignment="center"
         android:textSize="50sp"/>
 
-    <Button
-        android:onClick="startClassicMode"
+    <Spinner
+        android:id="@+id/cat_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Classic Mode"
-        android:paddingVertical="30dp"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        android:layout_marginVertical="10sp"/>
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/diff_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:textColor="#fff"
+        android:layout_marginBottom="50dp"
+        android:onClick="start_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Timed Mode"
-        android:paddingVertical="30dp"
+        android:text="Start"
         android:textAlignment="center"
-        android:textSize="50sp"
-        android:layout_marginVertical="10sp" />
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/check_selected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
