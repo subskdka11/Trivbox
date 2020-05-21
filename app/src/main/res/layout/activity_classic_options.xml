@@ -12,21 +12,34 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pick Category"
+        android:text="Pick Any Category"
         android:textAlignment="center"
-        android:textSize="50sp"/>
+        android:textSize="35sp"/>
 
     <Spinner
+        android:entries="@array/categories"
         android:id="@+id/cat_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="35sp" />
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick Any Difficulty"
+        android:textAlignment="center"
+        android:textSize="35sp"/>
 
     <Spinner
+        android:entries="@array/difficulty"
         android:id="@+id/diff_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="35sp" />
 
     <Button
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="50dp"
         android:onClick="start_game"
         android:layout_width="match_parent"
@@ -35,9 +48,6 @@
         android:textAlignment="center"
         android:textSize="30sp"/>
 
-    <TextView
-        android:id="@+id/check_selected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
