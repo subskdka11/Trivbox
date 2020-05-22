@@ -1,4 +1,4 @@
-package com.example.trivbox;
+package com.example.trivbox.models;
 
 import android.text.Html;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result implements Serializable {
+public class Question implements Serializable {
 
     @SerializedName("category")
     @Expose

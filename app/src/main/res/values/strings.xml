@@ -8,6 +8,12 @@
         <item> Hard </item>
     </array>
 
+    <array name="type">
+        <item> Any Type </item>
+        <item> Multiple Choice </item>
+        <item> True/False </item>
+    </array>
+
     <array name="categories">
         <item> Any Category </item>
         <item> General Knowledge </item>

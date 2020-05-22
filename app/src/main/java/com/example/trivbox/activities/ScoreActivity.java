@@ -1,4 +1,4 @@
-package com.example.trivbox;
+package com.example.trivbox.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,32 +6,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.trivbox.R;
 
-public class ShowScore extends AppCompatActivity {
+public class ScoreActivity extends AppCompatActivity {
     private TextView scoreId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_score);
+        setContentView(R.layout.activity_score);
 
         Intent i = getIntent();
         int score = (int) i.getIntExtra("score", 0);
 
         scoreId = findViewById(R.id.score_id);
-        Toast.makeText(ShowScore.this, ""+score, Toast.LENGTH_SHORT).show();
         scoreId.setText(""+score);
-
     }
 
     public void try_again(View view) {
-        startActivity(new Intent(ShowScore.this, ClassicOptions.class));
+        startActivity(new Intent(ScoreActivity.this, CategorySelectionActivity.class));
     }
 
     public void exit(View view) {
-        startActivity(new Intent(ShowScore.this, MainActivity.class));
+        startActivity(new Intent(ScoreActivity.this, MainActivity.class));
     }
 }

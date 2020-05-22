@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassicOptions"
+    tools:context=".activities.CategorySelectionActivity"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp" >
@@ -38,9 +38,24 @@
         android:layout_height="wrap_content"
         android:textSize="35sp" />
 
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick Any Type"
+        android:textAlignment="center"
+        android:textSize="35sp"/>
+
+    <Spinner
+        android:entries="@array/type"
+        android:id="@+id/type_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="35sp" />
+
     <Button
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         android:onClick="start_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

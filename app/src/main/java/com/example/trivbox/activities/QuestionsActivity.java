@@ -1,4 +1,4 @@
-package com.example.trivbox;
+package com.example.trivbox.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,16 +11,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.trivbox.R;
+import com.example.trivbox.models.Question;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Questions extends AppCompatActivity {
+public class QuestionsActivity extends AppCompatActivity {
     private TextView questionNoText, questionText;
     private Button option1, option2, option3, option4;
-    private Result currentResult;
+    private Question currentQuestion;
     int questionNo;
-    List<Result> apiResponse;
+    List<Question> apiResponse;
     Handler handler;
     int score;
 
@@ -34,10 +37,10 @@ public class Questions extends AppCompatActivity {
         handler = new Handler();
 
         Intent i = getIntent();
-        apiResponse = (List<Result>) i.getExtras().getSerializable("name_this");
+        apiResponse = (List<Question>) i.getExtras().getSerializable("name_this");
         questionNo = 1;
         score = 0;
-        currentResult = apiResponse.get(questionNo-1);
+        currentQuestion = apiResponse.get(questionNo-1);
 
         setData();
 
@@ -52,24 +55,24 @@ public class Questions extends AppCompatActivity {
         public void onClick(View v) {
             Button clickedButton = ((Button) v);
             String clickedOption = (String) clickedButton.getText();
-            if (clickedOption.equals(currentResult.getCorrectAnswer())) {
-                if (currentResult.getDifficulty().equals("easy")){
+            if (clickedOption.equals(currentQuestion.getCorrectAnswer())) {
+                if (currentQuestion.getDifficulty().equals("easy")){
                     score += 10;
-                } else if (currentResult.getDifficulty().equals("medium")){
+                } else if (currentQuestion.getDifficulty().equals("medium")){
                     score += 30;
-                } else if (currentResult.getDifficulty().equals("hard")){
+                } else if (currentQuestion.getDifficulty().equals("hard")){
                     score += 60;
                 }
                 ((Button) v).setBackgroundColor(Color.parseColor("#00FF00"));
-                Toast.makeText(Questions.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuestionsActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
             }else{
                 ((Button) v).setBackgroundColor(Color.parseColor("#FF0000"));
-                Toast.makeText(Questions.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuestionsActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
             }
 
             questionNo = questionNo + 1;
             if (questionNo <= 10) {
-                currentResult = apiResponse.get(questionNo - 1);
+                currentQuestion = apiResponse.get(questionNo - 1);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -77,7 +80,7 @@ public class Questions extends AppCompatActivity {
                     }
                 }, 2000);
             }else{
-                Intent intent = new Intent(Questions.this, ShowScore.class);
+                Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
                 intent.putExtra("score", score);
                 startActivity(intent);
             }
@@ -98,10 +101,10 @@ public class Questions extends AppCompatActivity {
         option2.setBackgroundColor(Color.parseColor("#FFFFFF"));
         option3.setBackgroundColor(Color.parseColor("#FFFFFF"));
         option4.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        String question = currentResult.getQuestion();
-        String correctAnswer = currentResult.getCorrectAnswer();
-        List<String> wrongAnswer = currentResult.getIncorrectAnswers();
-        String questionType = currentResult.getType();
+        String question = currentQuestion.getQuestion();
+        String correctAnswer = currentQuestion.getCorrectAnswer();
+        List<String> wrongAnswer = currentQuestion.getIncorrectAnswers();
+        String questionType = currentQuestion.getType();
 
         questionNoText.setText("Question No. " + questionNo);
         questionText.setText(question);
