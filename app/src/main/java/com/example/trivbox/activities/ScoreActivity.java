@@ -6,11 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trivbox.R;
+import com.example.trivbox.models.Score;
+import com.example.trivbox.utils.ScoresDbHelper;
+
 
 public class ScoreActivity extends AppCompatActivity {
     private TextView scoreId;
+    private Score scoreObj;
+    private ScoresDbHelper dbObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +24,19 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
         Intent i = getIntent();
-        int score = (int) i.getIntExtra("score", 0);
+        int points = (int) i.getIntExtra("score", 0);
+        scoreObj = (Score) i.getExtras().getSerializable("scoreObj");
 
         scoreId = findViewById(R.id.score_id);
-        scoreId.setText(""+score);
+        scoreId.setText("" + points);
+        scoreObj.setScore("" + points);
+
+        dbObject = new ScoresDbHelper(this);
+
+        if(dbObject.checkHighScore(points)){
+            Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show();
+        }
+        dbObject.insertScore(scoreObj);
     }
 
     public void try_again(View view) {

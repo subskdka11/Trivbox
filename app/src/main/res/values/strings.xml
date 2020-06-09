@@ -2,43 +2,43 @@
     <string name="app_name">Trivbox</string>
 
     <array name="difficulty">
-        <item> Any Difficulty </item>
-        <item> Easy </item>
-        <item> Medium </item>
-        <item> Hard </item>
+        <item>Any Difficulty</item>
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
     </array>
 
     <array name="type">
-        <item> Any Type </item>
-        <item> Multiple Choice </item>
-        <item> True/False </item>
+        <item>Any Type</item>
+        <item>Multiple Choice</item>
+        <item>True/False</item>
     </array>
 
     <array name="categories">
-        <item> Any Category </item>
-        <item> General Knowledge </item>
-        <item> Entertainment: Books </item>
-        <item> Entertainment: Film </item>
-        <item> Entertainment: Music </item>
-        <item> Entertainment: Musicals and Theatres </item>
-        <item> Entertainment: Television </item>
-        <item> Entertainment: Video Games </item>
-        <item> Entertainment: Board Games </item>
-        <item> Entertainment: Science and Nature </item>
-        <item> Science: Computer </item>
-        <item> Science: Mathematics </item>
-        <item> Mythology </item>
-        <item> Sports </item>
-        <item> Geography </item>
-        <item> History </item>
-        <item> Politics </item>
-        <item> Art </item>
-        <item> Celebrities </item>
-        <item> Animals </item>
-        <item> Vehicles </item>
-        <item> Entertainment: Comics </item>
-        <item> Science: Gadgets </item>
-        <item> Entertainment: Japanese Anime and Manga </item>
-        <item> Entertainment: Cartoon and Animation </item>
+        <item>Any Category</item>
+        <item>General Knowledge</item>
+        <item>Books</item>
+        <item>Film</item>
+        <item>Music</item>
+        <item>Musicals and Theatres</item>
+        <item>Television</item>
+        <item>Video Games</item>
+        <item>Board Games</item>
+        <item>Science and Nature</item>
+        <item>Computer</item>
+        <item>Mathematics</item>
+        <item>Mythology</item>
+        <item>Sports</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Art</item>
+        <item>Celebrities</item>
+        <item>Animals</item>
+        <item>Vehicles</item>
+        <item>Comics</item>
+        <item>Gadgets</item>
+        <item>Anime and Manga</item>
+        <item>Cartoon and Animation</item>
     </array>
 </resources>

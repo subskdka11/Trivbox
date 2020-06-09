@@ -13,9 +13,12 @@ import android.widget.Toast;
 
 import com.example.trivbox.R;
 import com.example.trivbox.models.Question;
+import com.example.trivbox.models.Score;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class QuestionsActivity extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class QuestionsActivity extends AppCompatActivity {
     List<Question> apiResponse;
     Handler handler;
     int score;
+    private Score scoreObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,9 @@ public class QuestionsActivity extends AppCompatActivity {
         handler = new Handler();
 
         Intent i = getIntent();
-        apiResponse = (List<Question>) i.getExtras().getSerializable("name_this");
+        apiResponse = (List<Question>) i.getExtras().getSerializable("response");
+        scoreObj = (Score) i.getExtras().getSerializable("scoreObj");
+        Toast.makeText(this, scoreObj.getCategory()+scoreObj.getDifficulty()+scoreObj.getType(), Toast.LENGTH_SHORT).show();
         questionNo = 1;
         score = 0;
         currentQuestion = apiResponse.get(questionNo-1);
@@ -64,10 +70,10 @@ public class QuestionsActivity extends AppCompatActivity {
                     score += 60;
                 }
                 ((Button) v).setBackgroundColor(Color.parseColor("#00FF00"));
-                Toast.makeText(QuestionsActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(QuestionsActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
             }else{
                 ((Button) v).setBackgroundColor(Color.parseColor("#FF0000"));
-                Toast.makeText(QuestionsActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(QuestionsActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
             }
 
             questionNo = questionNo + 1;
@@ -78,14 +84,19 @@ public class QuestionsActivity extends AppCompatActivity {
                     public void run() {
                         setData();
                     }
-                }, 2000);
+                }, 100);
             }else{
-                Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
-                intent.putExtra("score", score);
-                startActivity(intent);
+                changeActivity();
             }
         }
     };
+
+    private void changeActivity(){
+        Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
+        intent.putExtra("score", score);
+        intent.putExtra("scoreObj", (Serializable) scoreObj);
+        startActivity(intent);
+    }
 
     private void getAllId(){
         questionNoText = findViewById(R.id.question_no);

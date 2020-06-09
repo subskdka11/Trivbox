@@ -28,6 +28,15 @@ public class Question implements Serializable {
     @Expose
     private List<String> incorrectAnswers = null;
 
+    public Question(String category, String type, String difficulty, String question, String correctAnswer, List<String> incorrectAnswers) {
+        this.category = category;
+        this.type = type;
+        this.difficulty = difficulty;
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.incorrectAnswers = incorrectAnswers;
+    }
+
     public String getCategory() {
         return category;
     }

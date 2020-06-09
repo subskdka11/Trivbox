@@ -2,18 +2,30 @@ package com.example.trivbox.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Spinner;
 
 import com.example.trivbox.R;
+import com.example.trivbox.models.ApiResponse;
+import com.example.trivbox.models.Question;
+import com.example.trivbox.models.Score;
 import com.example.trivbox.network.API;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 
 import static com.example.trivbox.utils.Utils.spinnerAdapter;
 
 public class CategorySelectionActivity extends AppCompatActivity {
 
     private Spinner catSpinner,diffSpinner,typeSpinner;
+    private HashMap<String, String> selections = new HashMap<String, String>();
+    private List<Question> responseQuestions;
+    private Score scoreObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +42,30 @@ public class CategorySelectionActivity extends AppCompatActivity {
     }
 
     public void start_game(View view) {
-        String cat_id = getCategoryId(catSpinner.getSelectedItem().toString());
-        String difficulty = getDifficulty(diffSpinner.getSelectedItem().toString());
-        String type = getType(typeSpinner.getSelectedItem().toString());
+        String catIdText = catSpinner.getSelectedItem().toString();
+        String difficultyText = diffSpinner.getSelectedItem().toString();
+        String typeText = typeSpinner.getSelectedItem().toString();
+
+        selections.put("cat_id", getCategoryId(catIdText));
+        selections.put("difficulty", getDifficulty(difficultyText));
+        selections.put("type", getType(typeText));
+
+        scoreObj = new Score(catIdText, difficultyText, typeText);
 
         API api = new API(CategorySelectionActivity.this);
-        api.getQuestions(cat_id, difficulty, type);
+        responseQuestions = api.getQuestions(selections, scoreObj);
+//        if (responseQuestions != null){
+//            Log.d("Hello", "hello");
+//            changeActivity();
+//        }
     }
+
+//    private void changeActivity(){
+//        Intent intent = new Intent(CategorySelectionActivity.this, QuestionsActivity.class);
+//        intent.putExtra("response", (Serializable) responseQuestions);
+//        intent.putExtra("scoreObj", (Serializable) scoreObj);
+//        startActivity(intent);
+//    }
 
     public String getCategoryId(String selectedCategory){
         String[] categories = getResources().getStringArray(R.array.categories);
