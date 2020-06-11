@@ -1,4 +1,4 @@
-package com.example.trivbox;
+package com.example.trivbox.fragments;
 
 import android.os.Bundle;
 
@@ -14,8 +14,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.trivbox.adapters.LeaderboardAdapter;
+import com.example.trivbox.R;
 import com.example.trivbox.models.Leaderboard;
-import com.example.trivbox.models.Score;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LeaderboardFragment extends Fragment {
@@ -58,6 +60,7 @@ public class LeaderboardFragment extends Fragment {
                     leaderboardList.add(dataSnapshot.getValue(Leaderboard.class));
                 }
                 if (leaderboardList.size()>0){
+                    Collections.sort(leaderboardList, Collections.reverseOrder());
                     scoreboard_rv.setAdapter(new LeaderboardAdapter(leaderboardList));
                 } else {
                     Toast.makeText(getActivity(), "List not found", Toast.LENGTH_SHORT).show();

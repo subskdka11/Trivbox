@@ -1,6 +1,6 @@
 package com.example.trivbox.models;
 
-public class Leaderboard {
+public class Leaderboard implements Comparable<Leaderboard> {
     private String leaderboardID;
     private Score score;
     private String name;
@@ -23,5 +23,10 @@ public class Leaderboard {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Leaderboard o) {
+        return this.getScore().getPoint().compareTo(o.getScore().getPoint());
     }
 }

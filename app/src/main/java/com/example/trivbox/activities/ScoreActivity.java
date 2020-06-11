@@ -37,7 +37,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         dbObject = new ScoresDbHelper(this);
 
-        if(dbObject.checkHighScore(400)){
+        if(points <= 0 && dbObject.checkHighScore(points)){
             Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show();
 
             dbRef = FirebaseDatabase.getInstance().getReference("Leaderboard");

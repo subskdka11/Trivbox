@@ -1,4 +1,4 @@
-package com.example.trivbox;
+package com.example.trivbox.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trivbox.R;
 import com.example.trivbox.models.Leaderboard;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.trivbox;
+package com.example.trivbox.fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.trivbox.R;
+import com.example.trivbox.adapters.ScoreAdapter;
 import com.example.trivbox.models.Score;
 import com.example.trivbox.utils.ScoresDbHelper;
 

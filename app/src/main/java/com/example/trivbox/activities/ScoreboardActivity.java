@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.trivbox.LeaderboardFragment;
+import com.example.trivbox.fragments.LeaderboardFragment;
 import com.example.trivbox.R;
-import com.example.trivbox.ScoreFragment;
+import com.example.trivbox.fragments.ScoreFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ScoreboardActivity extends AppCompatActivity {

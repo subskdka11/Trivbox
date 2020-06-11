@@ -63,7 +63,7 @@ public class ScoresDbHelper extends SQLiteOpenHelper {
 
     public List<Score> getAllScores(){
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL_FIVE + " DESC";
         Cursor c = db.rawQuery(query, null);
 
         List<Score> scoreList = new ArrayList<>();
