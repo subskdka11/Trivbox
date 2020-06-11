@@ -23,7 +23,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.MyViewHolder
     @NonNull
     @Override
     public ScoreAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.scorelist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.score_list, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -33,7 +33,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.MyViewHolder
         String category = scoreList.get(position).getCategory();
         String difficulty = scoreList.get(position).getDifficulty();
         String type = scoreList.get(position).getType();
-        String score = scoreList.get(position).getScore();
+        String score = scoreList.get(position).getPoint();
         holder.setData(number, category, difficulty, type, score);
     }
 

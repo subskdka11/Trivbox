@@ -51,7 +51,7 @@ public class ScoresDbHelper extends SQLiteOpenHelper {
         values.put("category", score.getCategory());
         values.put("difficulty", score.getDifficulty());
         values.put("type", score.getType());
-        values.put("score", score.getScore());
+        values.put("score", score.getPoint());
         long l = db.insert(TABLE_NAME, null, values);
         db.close();
         if (l==-1){
@@ -88,12 +88,12 @@ public class ScoresDbHelper extends SQLiteOpenHelper {
         if (allScores.size()==0) {
             max = 0;
         }else if (allScores.size()==1) {
-            max = Integer.parseInt(allScores.get(0).getScore());
+            max = Integer.parseInt(allScores.get(0).getPoint());
         }else{
-            max = Integer.parseInt(allScores.get(0).getScore());
+            max = Integer.parseInt(allScores.get(0).getPoint());
             int num;
             for (int i=1; i<allScores.size();i++){
-                num = Integer.parseInt(allScores.get(i).getScore());
+                num = Integer.parseInt(allScores.get(i).getPoint());
                 if (max < num){
                     max = num;
                 }

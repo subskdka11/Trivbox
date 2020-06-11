@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.trivbox.models.Score;
 import com.example.trivbox.utils.ScoresDbHelper;
@@ -17,22 +18,26 @@ import com.example.trivbox.utils.ScoresDbHelper;
 import java.util.List;
 
 public class ScoreFragment extends Fragment {
-    private RecyclerView score_rv;
+    private RecyclerView scoreboard_rv;
     private ScoresDbHelper dbObject;
+    private TextView scoreboardTitle;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_score, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_scoreboard, container, false);
 
-        score_rv = rootView.findViewById(R.id.score_rv);
-        score_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        scoreboardTitle = rootView.findViewById(R.id.scoreboardTitle_id);
+        scoreboardTitle.setText("My Score");
+
+        scoreboard_rv = rootView.findViewById(R.id.scoreboard_rv);
+        scoreboard_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         dbObject = new ScoresDbHelper(this.getActivity());
         List<Score> scoreList = dbObject.getAllScores();
 
-        score_rv.setAdapter(new ScoreAdapter(scoreList));
+        scoreboard_rv.setAdapter(new ScoreAdapter(scoreList));
         return rootView;
     }
 }

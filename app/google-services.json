@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "631271434930",
+    "firebase_url": "https://trivbox-9f2f5.firebaseio.com",
+    "project_id": "trivbox-9f2f5",
+    "storage_bucket": "trivbox-9f2f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631271434930:android:dfd2d5596d0a98519e77ab",
+        "android_client_info": {
+          "package_name": "com.example.trivbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631271434930-vkvl2v43p7th83u8usob367p689h6lfb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trivbox",
+            "certificate_hash": "fe701e15c243650ff25a7472912f1ff24e3e5bcb"
+          }
+        },
+        {
+          "client_id": "631271434930-in2v47tcdq7jhlkm4lfsonisn6larqdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjV0nuWEpzzDLa6I3_y9I3VRX_NPN77mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631271434930-in2v47tcdq7jhlkm4lfsonisn6larqdu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

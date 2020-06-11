@@ -9,14 +9,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trivbox.R;
+import com.example.trivbox.models.Leaderboard;
 import com.example.trivbox.models.Score;
 import com.example.trivbox.utils.ScoresDbHelper;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class ScoreActivity extends AppCompatActivity {
     private TextView scoreId;
     private Score scoreObj;
     private ScoresDbHelper dbObject;
+    private DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +33,16 @@ public class ScoreActivity extends AppCompatActivity {
 
         scoreId = findViewById(R.id.score_id);
         scoreId.setText("" + points);
-        scoreObj.setScore("" + points);
+        scoreObj.setPoint("" + points);
 
         dbObject = new ScoresDbHelper(this);
 
-        if(dbObject.checkHighScore(points)){
+        if(dbObject.checkHighScore(400)){
             Toast.makeText(this, "High Score", Toast.LENGTH_SHORT).show();
+
+            dbRef = FirebaseDatabase.getInstance().getReference("Leaderboard");
+            String id = dbRef.push().getKey();
+            dbRef.child(id).setValue(new Leaderboard(id, scoreObj, "Your Name"));
         }
         dbObject.insertScore(scoreObj);
     }
